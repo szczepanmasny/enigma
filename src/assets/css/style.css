@@ -1,0 +1,13 @@
+
+body {
+    margin: 0;
+    width: 100%
+}
+
+.application--wrap{
+    width: 100% !important;
+}
+
+main {
+    text-align: center;
+}
