@@ -1,13 +1,14 @@
 <template>
   <div id="banner" class="text-xs-center" :style="{ 'background-image': 'url(' + image + ')' }">
     <div class="white--text">
-        <div class="logo">
-          LOGO
-        </div>
-        <div class="description">Miejska <strong>Wypożyczalnia</strong> Samochodów Elektrycznych</div>
-        <v-btn v-scroll-to="'#filters'" large outline icon fab id="scroll" class="mt-5 white--text" medium floating>
-          <v-icon x-large>keyboard_arrow_down</v-icon>
-        </v-btn>
+      <div class="logo">
+        LOGO
+      </div>
+      <div class="description">Miejska
+        <strong>Wypożyczalnia</strong> Samochodów Elektrycznych</div>
+      <v-btn v-scroll-to="'#filters'" large outline icon fab id="scroll" class="mt-5 white--text" medium floating>
+        <v-icon x-large>keyboard_arrow_down</v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -44,7 +45,7 @@
     margin-top: 0;
     margin-left: 70vw;
     margin-right: auto;
-    text-align:center;
+    text-align: center;
     width: 100%;
     padding-top: 30vh;
     background-color: rgba(76, 175, 80, 0.8);
@@ -53,6 +54,7 @@
   #banner .logo {
     font-size: 48px;
   }
+
   #banner .description {
     font-size: 30px;
   }

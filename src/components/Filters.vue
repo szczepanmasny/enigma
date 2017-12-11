@@ -4,39 +4,30 @@
       <h4>Typy obiektów</h4>
       <v-layout row wrap>
         <v-flex v-for="(objectType, index) in $store.state.objectTypes" :key="index" style="display:inline">
-            <v-layout row wrap>
-          <v-flex>
-            <v-chip :class="objectType.color" text-color="white">
-              <v-icon dark>{{ objectType.icon }}</v-icon>
-            </v-chip>
-            <span>{{ objectType.text }}</span>
-          </v-flex>
-          <v-flex>
-            <v-checkbox color="green" dark v-model="objectType.selected"></v-checkbox>
-          </v-flex>
-        </v-layout>
+          <v-layout row wrap>
+            <v-flex>
+              <v-chip :class="objectType.color" text-color="white">
+                <v-icon dark>{{ objectType.icon }}</v-icon>
+              </v-chip>
+              <span>{{ objectType.text }}</span>
+            </v-flex>
+            <v-flex>
+              <v-checkbox color="green" dark v-model="objectType.selected"></v-checkbox>
+            </v-flex>
+          </v-layout>
         </v-flex>
       </v-layout>
     </v-flex>
     <v-flex xs12 md4 lg3>
       <h4>Status pojazdu</h4>
-      <v-select
-        color="green"
-        dark class="input-group--focused"
-        placeholder="Wybierz status"
-        v-bind:items="statuses"
-        v-model="$store.state.selectedStatuses"
-        multiple chips
-        item-text="text"
-        item-value="name"
-        return-object
-        ></v-select>
+      <v-select color="green" dark class="input-group--focused" placeholder="Wybierz status" v-bind:items="statuses" v-model="$store.state.selectedStatuses"
+        multiple chips item-text="text" item-value="name" return-object></v-select>
     </v-flex>
     <v-flex xs12 md4 lg3>
       <h4>Poziom naładowania baterii</h4>
       <v-layout row wrap>
         <v-flex xs10>
-            <v-slider v-bind:max="100" v-model="$store.state.batteryLevel" dark :color="sliderColor" :thumb-color="sliderColor"></v-slider>
+          <v-slider v-bind:max="100" v-model="$store.state.batteryLevel" dark :color="sliderColor" :thumb-color="sliderColor"></v-slider>
         </v-flex>
         <v-flex xs2>
           <v-text-field v-bind:max="100" v-bind:min="0" v-model="$store.state.batteryLevel" type="number" dark color="success"></v-text-field>
@@ -51,26 +42,51 @@
     name: 'filters',
     data() {
       return {
-        batteryColors: [
-          {level:  25, color: 'red'},
-          {level:  50, color: 'orange'},
-          {level:  75, color: 'yellow'},
-          {level: 100, color: 'green'},
+        batteryColors: [{
+            level: 25,
+            color: 'red'
+          },
+          {
+            level: 50,
+            color: 'orange'
+          },
+          {
+            level: 75,
+            color: 'yellow'
+          },
+          {
+            level: 100,
+            color: 'green'
+          },
         ],
-        statuses: [
-          {name:"AVAILABLE", text: 'Dostępne'},
-          {name:"RETURNED", text: 'Zwrócone'},
-          {name:"RENTED", text: 'Wypożyczone'},
-          {name:"UNAVAILABLE", text: 'Niedostępne'},
-          {name:"RESERVED", text: 'Zarezerwowane'},
+        statuses: [{
+            name: "AVAILABLE",
+            text: 'Dostępne'
+          },
+          {
+            name: "RETURNED",
+            text: 'Zwrócone'
+          },
+          {
+            name: "RENTED",
+            text: 'Wypożyczone'
+          },
+          {
+            name: "UNAVAILABLE",
+            text: 'Niedostępne'
+          },
+          {
+            name: "RESERVED",
+            text: 'Zarezerwowane'
+          },
         ]
       };
     },
     computed: {
       sliderColor: function () {
         var color
-        for(let el of this.batteryColors){
-          if (this.$store.state.batteryLevel <= el.level){
+        for (let el of this.batteryColors) {
+          if (this.$store.state.batteryLevel <= el.level) {
             color = el.color
             break
           }
@@ -86,7 +102,9 @@
   #filters {
     flex-grow: unset;
   }
-  #filters > .flex {
+
+  #filters>.flex {
     padding: 20px;
   }
+
 </style>

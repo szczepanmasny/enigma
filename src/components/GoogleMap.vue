@@ -9,22 +9,13 @@
 
     <template v-for="(objectType) in markers" v-if="$store.state.objectTypes[objectType.name].selected">
       <gmap-cluster v-if="objectType.name == 'vehicles'">
-          <gmap-marker v-if="m.batteryLevelPct >= $store.state.batteryLevel && inSelectedStatuses(m.status)"
-            :key="i" v-for="(m, i) in objectType.data"
-            :icon="{url: getVehicleIcon(m.status)}"
-            :position="{lat: m.location.latitude,lng: m.location.longitude}"
-            :clickable="true"
-            :draggable="true"
-            @click="toggleInfoWindow(m,i)">
-          </gmap-marker>
+        <gmap-marker v-if="m.batteryLevelPct >= $store.state.batteryLevel && inSelectedStatuses(m.status)" :key="i" v-for="(m, i) in objectType.data"
+          :icon="{url: getVehicleIcon(m.status)}" :position="{lat: m.location.latitude,lng: m.location.longitude}" :clickable="true"
+          :draggable="true" @click="toggleInfoWindow(m,i)">
+        </gmap-marker>
       </gmap-cluster>
-      <gmap-marker v-else
-        :key="i" v-for="(m, i) in objectType.data"
-        :icon="{url: objectType.icon}"
-        :position="{lat: m.location.latitude,lng: m.location.longitude}"
-        :clickable="true"
-        :draggable="true"
-        @click="toggleInfoWindow(m,i)">
+      <gmap-marker v-else :key="i" v-for="(m, i) in objectType.data" :icon="{url: objectType.icon}" :position="{lat: m.location.latitude,lng: m.location.longitude}"
+        :clickable="true" :draggable="true" @click="toggleInfoWindow(m,i)">
       </gmap-marker>
 
     </template>
@@ -60,8 +51,7 @@
           lng: 17.04
         },
         zoom: 14,
-        markers: [
-          {
+        markers: [{
             name: 'parkings',
             objectType: 'PARKING',
             icon: require("../assets/img/parking.png"),
@@ -121,13 +111,13 @@
 
         }
       },
-      getVehicleIcon: function (status){
+      getVehicleIcon: function (status) {
         return status == 'AVAILABLE' ? this.vehicleAvailableIcon : this.vehicleUnavailableIcon
       },
-      inSelectedStatuses: function(status) {
+      inSelectedStatuses: function (status) {
         var inSelected = false
-        for (let selStatus of this.$store.state.selectedStatuses){
-          if (selStatus.name == status){
+        for (let selStatus of this.$store.state.selectedStatuses) {
+          if (selStatus.name == status) {
             inSelected = true
             break
           }

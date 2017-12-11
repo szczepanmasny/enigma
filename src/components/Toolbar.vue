@@ -7,7 +7,6 @@
 </template>
 
 <script>
-
   export default {
     name: 'toolbar',
     data() {
@@ -18,5 +17,6 @@
 </script>
 
 <style scoped>
+
 
 </style>
