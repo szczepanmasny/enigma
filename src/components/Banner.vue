@@ -48,6 +48,8 @@
     text-align: center;
     width: 100%;
     padding-top: 30vh;
+    padding-left: 20px;
+    padding-right: 20px;
     background-color: rgba(76, 175, 80, 0.8);
   }
 
@@ -57,6 +59,18 @@
 
   #banner .description {
     font-size: 30px;
+  }
+
+  @media (max-width: 1024px){
+    #banner>div {
+      margin-left: 40vw;
+    }
+  }
+  @media (max-width: 480px){
+    #banner>div {
+      margin-left: 0;
+      background-color: rgba(76, 175, 80, 0.6);
+    }
   }
 
 </style>
