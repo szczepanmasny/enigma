@@ -6,10 +6,10 @@
       <v-content>
         <app-banner></app-banner>
         <div id="map-component">
-          <filters></filters>
-          <google-map></google-map>
+          <app-filters></app-filters>
+          <app-google-map></app-google-map>
+          <app-footer></app-footer>
         </div>
-        <app-footer></app-footer>
       </v-content>
     </main>
     <app-back-top></app-back-top>
@@ -18,12 +18,12 @@
 </template>
 
 <script>
-  import AppToolbar from '@/components/AppToolbar'
-  import AppBanner from '@/components/AppBanner'
-  import Filters from './components/Filters.vue'
-  import GoogleMap from '@/components/GoogleMap'
-  import AppFooter from '@/components/AppFooter'
-  import AppBackTop from '@/components/AppBackTop'
+  import AppToolbar from '@/components/Toolbar'
+  import AppBanner from '@/components/Banner'
+  import AppFilters from '@/components/Filters.vue'
+  import AppGoogleMap from '@/components/GoogleMap'
+  import AppFooter from '@/components/Footer'
+  import AppBackTop from '@/components/BackTop'
 
   export default {
     name: 'app',
@@ -33,8 +33,8 @@
     components: {
       AppToolbar,
       AppBanner,
-      Filters,
-      GoogleMap,
+      AppFilters,
+      AppGoogleMap,
       AppFooter,
       AppBackTop
     }

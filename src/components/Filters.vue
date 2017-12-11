@@ -1,9 +1,9 @@
 <template>
-  <v-layout id="filters" class="grey darken-4 grey--text" row wrap>
-    <v-flex xs12 lg4>
+  <v-layout id="filters" class="grey darken-4 grey--text text--lighten-2" row wrap>
+    <v-flex xs12 md4 lg6>
       <h4>Typy obiektów</h4>
       <v-layout row wrap>
-        <v-flex v-for="(objectType, index) in objectTypes" :key="index" style="display:inline">
+        <v-flex v-for="(objectType, index) in $store.state.objectTypes" :key="index" style="display:inline">
             <v-layout row wrap>
           <v-flex>
             <v-chip :class="objectType.color" text-color="white">
@@ -12,19 +12,36 @@
             <span>{{ objectType.text }}</span>
           </v-flex>
           <v-flex>
-            <v-checkbox color="green" v-model="objectType.selected"></v-checkbox>
+            <v-checkbox color="green" dark v-model="objectType.selected"></v-checkbox>
           </v-flex>
         </v-layout>
         </v-flex>
       </v-layout>
     </v-flex>
-    <v-flex xs12 lg4>
+    <v-flex xs12 md4 lg3>
       <h4>Status pojazdu</h4>
-      <v-select color="green" class="input-group--focused" label="Wybierz status" v-bind:items="states" v-model="e7" multiple chips></v-select>
+      <v-select
+        color="green"
+        dark class="input-group--focused"
+        placeholder="Wybierz status"
+        v-bind:items="statuses"
+        v-model="$store.state.selectedStatuses"
+        multiple chips
+        item-text="text"
+        item-value="name"
+        return-object
+        ></v-select>
     </v-flex>
-    <v-flex xs12 lg4>
+    <v-flex xs12 md4 lg3>
       <h4>Poziom naładowania baterii</h4>
-      <v-slider v-model="batteryLevel" color="green" track-color="green lighten-4" thumb-color="green"></v-slider>
+      <v-layout row wrap>
+        <v-flex xs10>
+            <v-slider v-bind:max="100" v-model="$store.state.batteryLevel" dark :color="sliderColor" :thumb-color="sliderColor"></v-slider>
+        </v-flex>
+        <v-flex xs2>
+          <v-text-field v-bind:max="100" v-bind:min="0" v-model="$store.state.batteryLevel" type="number" dark color="success"></v-text-field>
+        </v-flex>
+      </v-layout>
     </v-flex>
   </v-layout>
 </template>
@@ -34,46 +51,33 @@
     name: 'filters',
     data() {
       return {
-        batteryLevel: 0,
-        objectTypes: {
-          parking: {
-            text: "Parkingi",
-            color: "blue",
-            icon: "local_parking",
-            selected: true,
-          },
-          poi: {
-            text: "POI",
-            color: "purple",
-            icon: "place",
-            selected: true,
-          },
-          vehicle: {
-            text: "Pojazdy",
-            color: "green",
-            icon: "directions_car",
-            selected: true,
-          },
-        },
-        e7: [],
-        states: [
-          'Alabama', 'Alaska', 'American Samoa', 'Arizona',
-          'Arkansas', 'California', 'Colorado', 'Connecticut',
-          'Delaware', 'District of Columbia', 'Federated States of Micronesia',
-          'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho',
-          'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-          'Louisiana', 'Maine', 'Marshall Islands', 'Maryland',
-          'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-          'Missouri', 'Montana', 'Nebraska', 'Nevada',
-          'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
-          'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio',
-          'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico',
-          'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
-          'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia',
-          'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        batteryColors: [
+          {level:  25, color: 'red'},
+          {level:  50, color: 'orange'},
+          {level:  75, color: 'yellow'},
+          {level: 100, color: 'green'},
+        ],
+        statuses: [
+          {name:"AVAILABLE", text: 'Dostępne'},
+          {name:"RETURNED", text: 'Zwrócone'},
+          {name:"RENTED", text: 'Wypożyczone'},
+          {name:"UNAVAILABLE", text: 'Niedostępne'},
+          {name:"RESERVED", text: 'Zarezerwowane'},
         ]
       };
     },
+    computed: {
+      sliderColor: function () {
+        var color
+        for(let el of this.batteryColors){
+          if (this.$store.state.batteryLevel <= el.level){
+            color = el.color
+            break
+          }
+        }
+        return color
+      }
+    }
   };
 
 </script>

@@ -1,14 +1,15 @@
 <template>
-  <div>
-    <h2>
-      Wybierz obiekt na mapie, aby zobaczyć jego szczegóły
-    </h2>
-  </div>
+  <v-toolbar id="app-toolbar" light>
+    <v-toolbar-title>
+      LOGO
+    </v-toolbar-title>
+  </v-toolbar>
 </template>
 
 <script>
+
   export default {
-    name: 'not-selected',
+    name: 'toolbar',
     data() {
       return {};
     },
@@ -17,6 +18,5 @@
 </script>
 
 <style scoped>
-
 
 </style>
