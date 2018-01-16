@@ -1,13 +1,13 @@
 <template>
   <div>
     <h2>{{content.name}}</h2>
-    <div>{{statuses[content.status]}}</div>
+    <div>{{status}}</div>
     <v-layout>
       <v-flex>
         <img :src="'https://test.vozilla.pl/api-client-portal//attachments/' + content.picture.id" />
       </v-flex>
       <v-flex>
-        <v-progress-circular :size="100" :width="15" :rotate="360" :value="content.batteryLevelPct" :color="circleColor">
+        <v-progress-circular :size="100" :width="15" :rotate="360" :value="content.batteryLevelPct" :color="color(content.batteryLevelPct)">
           {{ content.rangeKm + 'km' }}
         </v-progress-circular>
       </v-flex>
@@ -25,49 +25,25 @@
 </template>
 
 <script>
+  import {
+    mapGetters
+  } from 'vuex'
+
   export default {
     name: 'vehicle',
     props: [
-      'content'
+      'content',
     ],
     data() {
-      return {
-        circleColors: [{
-            level: 25,
-            color: 'red'
-          },
-          {
-            level: 50,
-            color: 'orange'
-          },
-          {
-            level: 75,
-            color: 'yellow'
-          },
-          {
-            level: 100,
-            color: 'green'
-          },
-        ],
-        statuses: {
-          "AVAILABLE": "Dostępny",
-          "RETURNED": "Zwrócony",
-          "RENTED": "Wypożyczony",
-          "UNAVAILABLE": "Niedostępny",
-          "RESERVED": "Zarezerwowany"
-        },
-      };
+      return {};
     },
     computed: {
-      circleColor: function () {
-        var color
-        for (let el of this.circleColors) {
-          if (this.content.batteryLevelPct <= el.level) {
-            color = el.color
-            break
-          }
-        }
-        return color
+      ...mapGetters([
+        'color',
+        'statuses'
+      ]),
+      status: function() {
+        return this.statuses.find(obj => obj.name == this.content.status).text
       }
     }
   };

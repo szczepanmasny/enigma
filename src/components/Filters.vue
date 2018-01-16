@@ -3,7 +3,7 @@
     <v-flex xs12 md4 lg6>
       <h4>Typy obiektów</h4>
       <v-layout row wrap>
-        <v-flex v-for="(objectType, index) in $store.state.objectTypes" :key="index" style="display:inline">
+        <v-flex v-for="(objectType, index) in objectTypes" :key="index" style="display:inline">
           <v-layout row wrap>
             <v-flex>
               <v-chip :class="objectType.color" text-color="white">
@@ -38,62 +38,25 @@
 </template>
 
 <script>
+  import {
+    mapGetters
+  } from 'vuex'
+
   export default {
     name: 'filters',
     data() {
-      return {
-        batteryColors: [{
-            level: 25,
-            color: 'red'
-          },
-          {
-            level: 50,
-            color: 'orange'
-          },
-          {
-            level: 75,
-            color: 'yellow'
-          },
-          {
-            level: 100,
-            color: 'green'
-          },
-        ],
-        statuses: [{
-            name: "AVAILABLE",
-            text: 'Dostępne'
-          },
-          {
-            name: "RETURNED",
-            text: 'Zwrócone'
-          },
-          {
-            name: "RENTED",
-            text: 'Wypożyczone'
-          },
-          {
-            name: "UNAVAILABLE",
-            text: 'Niedostępne'
-          },
-          {
-            name: "RESERVED",
-            text: 'Zarezerwowane'
-          },
-        ]
-      };
+      return {};
     },
     computed: {
-      sliderColor: function () {
-        var color
-        for (let el of this.batteryColors) {
-          if (this.$store.state.batteryLevel <= el.level) {
-            color = el.color
-            break
-          }
-        }
-        return color
+      ...mapGetters([
+        'color',
+        'objectTypes',
+        'statuses',
+      ]),
+      sliderColor: function() {
+        return this.color(this.$store.state.batteryLevel)
       }
-    }
+    },
   };
 
 </script>
