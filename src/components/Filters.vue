@@ -1,8 +1,8 @@
 <template>
-  <v-layout id="filters" class="grey darken-4 grey--text text--lighten-2" row wrap>
+  <v-layout id="filters" class="grey darken-4 grey--text text--lighten-2 filters" row wrap>
     <v-flex xs12 md4 lg6>
       <h4>Typy obiektów</h4>
-      <v-layout row wrap>
+      <v-layout row wrap class="object-types">
         <v-flex v-for="(objectType, index) in objectTypes" :key="index" style="display:inline">
           <v-layout row wrap>
             <v-flex>
@@ -21,7 +21,7 @@
     <v-flex xs12 md4 lg3>
       <h4>Status pojazdu</h4>
       <v-select color="green" dark class="input-group--focused" placeholder="Wybierz status" v-bind:items="statuses" v-model="$store.state.selectedStatuses"
-        multiple chips item-text="text" item-value="name" return-object></v-select>
+        multiple chips item-text="text" item-value="name" single-line bottom return-object></v-select>
     </v-flex>
     <v-flex xs12 md4 lg3>
       <h4>Poziom naładowania baterii</h4>
@@ -39,22 +39,24 @@
 
 <script>
   import {
+    mapState,
     mapGetters
   } from 'vuex'
 
   export default {
     name: 'filters',
-    data() {
-      return {};
-    },
+    data: () => ({}),
     computed: {
-      ...mapGetters([
-        'color',
+      ...mapState([
+        'batteryLevel',
         'objectTypes',
         'statuses',
       ]),
-      sliderColor: function() {
-        return this.color(this.$store.state.batteryLevel)
+      ...mapGetters([
+        'color',
+      ]),
+      sliderColor () {
+        return this.color(this.batteryLevel)
       }
     },
   };
@@ -62,12 +64,13 @@
 </script>
 
 <style scoped>
-  #filters {
+  .filters {
     flex-grow: unset;
   }
-
-  #filters>.flex {
+  .filters > .flex {
     padding: 20px;
   }
-
+  .object-types {
+    padding-top: 18px;
+  }
 </style>

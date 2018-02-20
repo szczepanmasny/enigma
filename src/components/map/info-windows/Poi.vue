@@ -1,16 +1,13 @@
 <template>
   <div>
     <p>
-      <h2>Parking {{content.name}}</h2>
-      <h4>{{content.description}}</h4>
+      <h2>{{content.name}}</h2>
     </p>
     <p>
-      <div>Miejsca:
-        <strong>{{content.spacesCount}}</strong>
-      </div>
-      <div>Wolne miejsca:
-        <strong>{{content.availableSpacesCount}}</strong>
-      </div>
+      <h4>{{content.description}}</h4>
+    </p>
+    <p>Kategoria:
+      <strong>{{content.category}}</strong>
     </p>
     <p>Adres:
       <strong>{{content.address.street}}{{content.address.house ? ' ' + content.address.house : ''}}, {{content.address.city}}</strong>
@@ -20,13 +17,11 @@
 
 <script>
   export default {
-    name: 'parking',
+    name: 'poi',
     props: [
       'content'
     ],
-    data() {
-      return {};
-    },
+    data: () => ({}),
   };
 
 </script>
@@ -35,5 +30,4 @@
   strong {
     font-weight: bold;
   }
-
 </style>

@@ -21,15 +21,12 @@
   import AppToolbar from '@/components/Toolbar'
   import AppBanner from '@/components/Banner'
   import AppFilters from '@/components/Filters.vue'
-  import AppGoogleMap from '@/components/GoogleMap'
+  import AppGoogleMap from '@/components/map/GoogleMap'
   import AppFooter from '@/components/Footer'
   import AppBackTop from '@/components/BackTop'
 
   export default {
     name: 'app',
-    data() {
-      return {};
-    },
     components: {
       AppToolbar,
       AppBanner,
@@ -37,7 +34,8 @@
       AppGoogleMap,
       AppFooter,
       AppBackTop
-    }
+    },
+    data: () => ({}),
   };
 
 </script>

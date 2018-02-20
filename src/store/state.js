@@ -1,25 +1,38 @@
 let state = {
-  batteryLevel: 40,
-  objectTypes: {
-    vehicles: {
+  objectTypes: [{
       text: "Pojazdy",
       color: "green",
       icon: "directions_car",
       selected: true,
+      name: 'vehicles',
+      objectType: 'VEHICLE',
+      image: {
+        'AVAILABLE': require("../assets/img/car_green.png"),
+        'UNAVAILABLE': require("../assets/img/car_red.png"),
+      },
+      data: []
     },
-    parkings: {
+    {
       text: "Parkingi",
       color: "blue",
       icon: "local_parking",
       selected: false,
+      name: 'parkings',
+      objectType: 'PARKING',
+      image: require("../assets/img/parking.png"),
+      data: []
     },
-    poi: {
+    {
       text: "POI",
       color: "orange",
-      icon: "place",
+      icon: "flag",
       selected: false,
+      name: 'poi',
+      objectType: 'POI',
+      image: require("../assets/img/flag.png"),
+      data: []
     },
-  },
+  ],
   statuses: [{
       name: "AVAILABLE",
       text: 'Dostępny'
@@ -41,29 +54,28 @@ let state = {
       text: 'Zarezerwowany'
     },
   ],
-  selectedStatuses: [
-    {
-      name: "AVAILABLE",
-      text: 'Dostępny'
-    }, 
-  ],
+  selectedStatuses: [{
+    name: "AVAILABLE",
+    text: 'Dostępny'
+  }, ],
   batteryLevelColors: [{
-    level: 25,
-    color: 'red'
-  },
-  {
-    level: 50,
-    color: 'orange'
-  },
-  {
-    level: 75,
-    color: 'yellow'
-  },
-  {
-    level: 100,
-    color: 'green'
-  },
-],
+      level: 25,
+      color: 'red'
+    },
+    {
+      level: 50,
+      color: 'orange'
+    },
+    {
+      level: 75,
+      color: 'yellow'
+    },
+    {
+      level: 100,
+      color: 'green'
+    },
+  ],
+  batteryLevel: 0,
 }
 
 export default state

@@ -9,14 +9,7 @@
 <script>
   export default {
     name: 'toolbar',
-    data() {
-      return {};
-    },
+    data: () => ({}),
   };
 
 </script>
-
-<style scoped>
-
-
-</style>

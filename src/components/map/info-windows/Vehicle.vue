@@ -26,6 +26,7 @@
 
 <script>
   import {
+    mapState,
     mapGetters
   } from 'vuex'
 
@@ -34,23 +35,18 @@
     props: [
       'content',
     ],
-    data() {
-      return {};
-    },
+    data: () => ({}),
     computed: {
-      ...mapGetters([
-        'color',
+      ...mapState([
         'statuses'
       ]),
-      status: function() {
+      ...mapGetters([
+        'color'
+      ]),
+      status () {
         return this.statuses.find(obj => obj.name == this.content.status).text
       }
     }
   };
 
 </script>
-
-<style scoped>
-
-
-</style>

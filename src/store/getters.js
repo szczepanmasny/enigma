@@ -8,9 +8,7 @@ let getters = {
       }
     }
     return color
-  },
-  objectTypes: state => state.objectTypes,
-  statuses: state => state.statuses,
+  }
 }
 
 export default getters

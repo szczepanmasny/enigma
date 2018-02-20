@@ -1,5 +1,5 @@
 <template>
-  <div id="banner" class="text-xs-center" :style="{ 'background-image': 'url(' + image + ')' }">
+  <div class="text-xs-center banner" :style="{ 'background-image': 'url(' + image + ')' }">
     <div class="white--text">
       <div class="logo">
         LOGO
@@ -20,16 +20,14 @@
 
   export default {
     name: 'mainBanner',
-    data() {
-      return {
-        image: require("../assets/img/banner.jpeg")
-      };
-    },
+    data: () => ({
+      image: require("../assets/img/banner.jpeg")
+    }),
   };
 
 </script>
 <style scoped>
-  #banner {
+  .banner {
     margin-top: -64px;
     width: 100vw;
     height: 100vh;
@@ -41,7 +39,7 @@
     background-size: cover;
   }
 
-  #banner>div {
+  .banner>div {
     margin-top: 0;
     margin-left: 70vw;
     margin-right: auto;
@@ -53,21 +51,22 @@
     background-color: rgba(76, 175, 80, 0.8);
   }
 
-  #banner .logo {
+  .banner .logo {
     font-size: 48px;
   }
 
-  #banner .description {
+  .banner .description {
     font-size: 30px;
   }
 
-  @media (max-width: 1024px){
-    #banner>div {
+  @media (max-width: 1024px) {
+    .banner>div {
       margin-left: 40vw;
     }
   }
-  @media (max-width: 480px){
-    #banner>div {
+
+  @media (max-width: 480px) {
+    .banner>div {
       margin-left: 0;
       background-color: rgba(76, 175, 80, 0.6);
     }
